@@ -26,19 +26,19 @@ Route::get('/admin/home', [App\Http\Controllers\admin\HomeController::class, 'in
     // roles
     Route::prefix('role')->group(function(){
         Route::get('index', [App\Http\Controllers\admin\roleController::class, 'index'])->middleware('permission:show-role');
-        Route::get('create', [App\Http\Controllers\admin\roleController ::class, 'create'])->middleware('permission:show-role');
-        Route::post('store', [App\Http\Controllers\admin\roleController ::class, 'store'])->middleware('permission:show-role');
+        Route::get('create', [App\Http\Controllers\admin\roleController ::class, 'create'])->middleware('permission:create-role');
+        Route::post('store', [App\Http\Controllers\admin\roleController ::class, 'store'])->middleware('permission:create-role');
         Route::get('edit/{id}', [App\Http\Controllers\admin\roleController ::class, 'edit'])->middleware('permission:show-role');
-        Route::post('update/{id}', [App\Http\Controllers\admin\roleController ::class, 'update'])->middleware('permission:show-role');
-        Route::get('delete/{id}', [App\Http\Controllers\admin\roleController ::class, 'destroy'])->middleware('permission:show-role');
+        Route::post('update/{id}', [App\Http\Controllers\admin\roleController ::class, 'update'])->middleware('permission:update-role');
+        Route::get('delete/{id}', [App\Http\Controllers\admin\roleController ::class, 'destroy'])->middleware('permission:delete-role');
     });
       // Users
      Route::prefix('user')->group(function(){
         Route::get('index', [App\Http\Controllers\admin\userController::class, 'index'])->middleware('permission:show-user');
-        Route::get('create', [App\Http\Controllers\admin\userController ::class, 'create'])->middleware('permission:show-user');
-        Route::post('store', [App\Http\Controllers\admin\userController ::class, 'store'])->middleware('permission:show-user');
+        Route::get('create', [App\Http\Controllers\admin\userController ::class, 'create'])->middleware('permission:create-user');
+        Route::post('store', [App\Http\Controllers\admin\userController ::class, 'store'])->middleware('permission:create-user');
         Route::get('edit/{id}', [App\Http\Controllers\admin\userController ::class, 'edit'])->middleware('permission:show-user');
-        Route::post('update/{id}', [App\Http\Controllers\admin\userController ::class, 'update'])->middleware('permission:show-user');
-        Route::get('delete/{id}', [App\Http\Controllers\admin\userController ::class, 'destroy'])->middleware('permission:show-user');
+        Route::post('update/{id}', [App\Http\Controllers\admin\userController ::class, 'update'])->middleware('permission:update-user');
+        Route::get('delete/{id}', [App\Http\Controllers\admin\userController ::class, 'destroy'])->middleware('permission:delete-user');
     });
 });
