@@ -18,29 +18,76 @@
                         <span class="ml-4">Dashboards</span>
                     </a>
                 </li>
+                {{-- film --}}
                 <li class=" ">
-                    <a href="#product" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <svg class="svg-icon" id="p-dash2" width="20" height="20"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
-                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                        </svg>
+                    <a href="#film" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa-solid fa-film"></i>
                         <span class="ml-4">film</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
                     </a>
-                    <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                    <ul id="film" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="">
                             <a href="../backend/page-list-product.html">
-                                <i class="las la-minus"></i><span>List Product</span>
+                                <i class="las la-minus"></i><span>List film</span>
                             </a>
                         </li>
                         <li class="">
                             <a href="../backend/page-add-product.html">
-                                <i class="las la-minus"></i><span>Add Product</span>
+                                <i class="las la-minus"></i><span>Add film</span>
                             </a>
                         </li>
                     </ul>
                 </li>
+            {{-- Role --}}
+          @can('show-role')
+          <li class="">
+            <a href="#role" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                <i class="fa-brands fa-linux"></i>
+                <span class="ml-4">Roles</span>
+                <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                </svg>
+            </a>
+            <ul id="role" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                <li class="">
+                    <a href="/role/index">
+                        <i class="las la-minus"></i><span>List role</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/role/create">
+                        <i class="las la-minus"></i><span>Add role</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+          @endcan
+            {{-- User --}}
+          @can('show-user')
+          <li class=" ">
+            <a href="#user" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                <i class="fa-solid fa-user"></i>
+                <span class="ml-4">User</span>
+                <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                </svg>
+            </a>
+            <ul id="user" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                <li class="">
+                    <a href="/user/index">
+                        <i class="las la-minus"></i><span>List user</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/user/create">
+                        <i class="las la-minus"></i><span>Add user</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+          @endcan
 
             </ul>
         </nav>

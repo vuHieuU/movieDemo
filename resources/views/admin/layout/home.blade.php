@@ -16,6 +16,8 @@
     {{-- sitebar --}}
     @include('admin.layout.sitebar')
 
+    @yield('content')
+
     
      @include('admin.layout.footer')
   </body>

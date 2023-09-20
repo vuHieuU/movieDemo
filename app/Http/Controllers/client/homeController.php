@@ -12,7 +12,7 @@ class homeController extends Controller
      */
     public function index()
     {
-        return view('client.home');
+        return view('client.layout.main');
     }
 
     /**
