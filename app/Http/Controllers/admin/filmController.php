@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\category;
 use Illuminate\Http\Request;
+use App\Models\film;
 
 class filmController extends Controller
 {
@@ -12,7 +14,8 @@ class filmController extends Controller
      */
     public function index()
     {
-        //
+        $film = film::get();
+        return view('admin.film.index',compact('film'));
     }
 
     /**
@@ -20,7 +23,8 @@ class filmController extends Controller
      */
     public function create()
     {
-        //
+        $cate = category::get();
+        return view('admin.film.create',compact('cate'));
     }
 
     /**
@@ -28,7 +32,26 @@ class filmController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('thumb')) {
+            $thumb = $request->file('thumb')->getClientOriginalName();
+            $request->file('thumb')->storeAs('public/images', $thumb);
+        } else {
+            $thumb = ''; 
+        }
+        $filmData = [
+             'name' => $request->name,
+             'thumb' => $thumb,
+             'thoiLuongChieu' => $request->thoiLuongChieu,
+             'ngayKhoiChieu' => $request->ngayKhoiChieu,
+             'ngonNgu' => $request->ngonNgu,
+             'trailer' => $request->trailer,
+             'daoDien' => $request->daoDien,
+             'dienVien' => $request->dienVien,
+             'status' => $request->status,
+        ];
+        $film = film::create($filmData);
+        $film->categories()->attach($request->id_cate);
+        return redirect('/film/index');
     }
 
     /**
@@ -44,7 +67,9 @@ class filmController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $film = film::findOrFail($id);
+        $cate = category::get();
+        return view('admin/film/edit',compact('film','cate'));
     }
 
     /**
@@ -60,6 +85,8 @@ class filmController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $film = film::findOrFail($id);
+        $film->delete($id);
+        return redirect('film/index');
     }
 }

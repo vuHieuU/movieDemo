@@ -18,6 +18,28 @@
                         <span class="ml-4">Dashboards</span>
                     </a>
                 </li>
+                {{-- cate --}}
+                <li class=" ">
+                    <a href="#cate" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa-solid fa-film"></i>
+                        <span class="ml-4">cate</span>
+                        <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                        </svg>
+                    </a>
+                    <ul id="cate" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                        <li class="">
+                            <a href="/cate/index">
+                                <i class="las la-minus"></i><span>List cate</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="/cate/create">
+                                <i class="las la-minus"></i><span>Add cate</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 {{-- film --}}
                 <li class=" ">
                     <a href="#film" class="collapsed" data-toggle="collapse" aria-expanded="false">
@@ -29,12 +51,12 @@
                     </a>
                     <ul id="film" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                         <li class="">
-                            <a href="../backend/page-list-product.html">
+                            <a href="/film/index">
                                 <i class="las la-minus"></i><span>List film</span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="../backend/page-add-product.html">
+                            <a href="/film/create">
                                 <i class="las la-minus"></i><span>Add film</span>
                             </a>
                         </li>

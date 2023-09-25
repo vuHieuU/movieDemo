@@ -23,6 +23,24 @@ Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->nam
 Route::middleware(['auth'])->group(function (){
 Route::get('/admin/home', [App\Http\Controllers\admin\HomeController::class, 'index'])->name('index');
 
+    // cate
+    Route::prefix('cate')->group(function(){
+        Route::get('index', [App\Http\Controllers\admin\CateController::class, 'index']);
+        Route::get('create', [App\Http\Controllers\admin\CateController ::class, 'create']);
+        Route::post('store', [App\Http\Controllers\admin\CateController ::class, 'store']);
+        Route::get('edit/{id}', [App\Http\Controllers\admin\CateController ::class, 'edit']);
+        Route::post('update/{id}', [App\Http\Controllers\admin\CateController ::class, 'update']);
+        Route::get('delete/{id}', [App\Http\Controllers\admin\CateController ::class, 'destroy']);
+    });
+    // Film
+    Route::prefix('film')->group(function(){
+        Route::get('index', [App\Http\Controllers\admin\filmController::class, 'index']);
+        Route::get('create', [App\Http\Controllers\admin\filmController ::class, 'create']);
+        Route::post('store', [App\Http\Controllers\admin\filmController ::class, 'store']);
+        Route::get('edit/{id}', [App\Http\Controllers\admin\filmController ::class, 'edit']);
+        Route::post('update/{id}', [App\Http\Controllers\admin\filmController ::class, 'update']);
+        Route::get('delete/{id}', [App\Http\Controllers\admin\filmController ::class, 'destroy']);
+    });
     // roles
     Route::prefix('role')->group(function(){
         Route::get('index', [App\Http\Controllers\admin\roleController::class, 'index'])->middleware('permission:show-role');
