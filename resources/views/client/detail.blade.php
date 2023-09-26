@@ -89,8 +89,11 @@
 
 										<div class="entry-action">
 											<div class="mrate  no-rate">
-												<a href="#" class="amy-buy-ticket" target="_blank">Buy Ticket</a>
-
+												<a href="{{ route('date',['film_id'=> $film->id]) }}" class="amy-buy-ticket" target="_blank">Buy Ticket</a>
+                                                 <input type="hidden" name="id" value="{{ $film->id }}">
+												 {{-- @php
+													 dd($film->id)
+												 @endphp --}}
 											</div>
 											<div class="entry-share">
 												<label>Share:</label>

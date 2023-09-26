@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\cart\dateTimeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,16 +15,15 @@ use App\Http\Controllers\Auth\LoginController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-//  home
-Route::get('/', [App\Http\Controllers\client\homeController::class, 'index']);
-Route::get('/detail/{id}', [App\Http\Controllers\client\homeController::class, 'show']);
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-Auth::routes();
-
-Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('admin');
-Route::middleware(['auth'])->group(function (){
+    //  home
+        Route::get('/', [App\Http\Controllers\client\homeController::class, 'index']);
+        Route::get('/detail/{id}', [App\Http\Controllers\client\homeController::class, 'show']);
+        Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    
+    Auth::routes();
+    Route::get('/admin', [App\Http\Controllers\Auth\HomeController::class, 'index'])->name('admin');
+    Route::middleware(['auth'])->group(function (){
 Route::get('/admin/home', [App\Http\Controllers\admin\HomeController::class, 'index'])->name('index');
-
     // cate
     Route::prefix('cate')->group(function(){
         Route::get('index', [App\Http\Controllers\admin\CateController::class, 'index']);
@@ -87,4 +87,7 @@ Route::get('/admin/home', [App\Http\Controllers\admin\HomeController::class, 'in
         Route::post('update/{id}', [App\Http\Controllers\admin\userController ::class, 'update'])->middleware('permission:update-user');
         Route::get('delete/{id}', [App\Http\Controllers\admin\userController ::class, 'destroy'])->middleware('permission:delete-user');
     });
+
+        // cart
+        Route::get('ticketDateTime/{film_id}',[dateTimeController::class,'index'])->name('date');
 });
