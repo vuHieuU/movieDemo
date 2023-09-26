@@ -19,9 +19,18 @@ class film extends Model
         'daoDien',
         'dienVien',
         'status',
+        'content',
     ];
     public function categories()
 {
     return $this->belongsToMany(Category::class,'category_films', 'film_id', 'cate_id');
+}
+    public function cinemas()
+{
+    return $this->belongsToMany(Cinema::class,'cinemas_films','film_id','cinema_id');
+}
+    public function hours()
+{
+    return $this->belongsToMany(hour::class,'films_hours','film_id','hour_id');
 }
 }

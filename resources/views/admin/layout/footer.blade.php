@@ -32,3 +32,21 @@
  
  <!-- app JavaScript -->
  <script src="/template/assets/js/app.js"></script>
+
+ <script>
+    // Lấy tất cả các ô checkbox có lớp "checkbox"
+    const checkboxes = document.querySelectorAll('.checkbox');
+
+    // Lấy ô checkbox master
+    const masterCheckbox = document.querySelector('[data-master-checkbox]');
+
+    // Thêm sự kiện click cho ô checkbox master
+    masterCheckbox.addEventListener('click', function() {
+        const isChecked = this.checked;
+
+        // Đặt trạng thái checked cho tất cả các ô checkbox khác
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = isChecked;
+        });
+    });
+</script>

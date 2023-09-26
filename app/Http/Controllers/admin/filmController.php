@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\category;
 use Illuminate\Http\Request;
 use App\Models\film;
+use App\Models\cinema;
+use App\Models\hour;
 
 class filmController extends Controller
 {
@@ -24,7 +26,9 @@ class filmController extends Controller
     public function create()
     {
         $cate = category::get();
-        return view('admin.film.create',compact('cate'));
+        $cinema = cinema::get();
+        $hour = hour::get();
+        return view('admin.film.create',compact('cate','cinema','hour'));
     }
 
     /**
@@ -48,9 +52,12 @@ class filmController extends Controller
              'daoDien' => $request->daoDien,
              'dienVien' => $request->dienVien,
              'status' => $request->status,
+             'content' => $request->content,
         ];
         $film = film::create($filmData);
         $film->categories()->attach($request->id_cate);
+        $film->cinemas()->attach($request->id_cinema);
+        $film->hours()->attach($request->id_hour);
         return redirect('/film/index');
     }
 
@@ -69,7 +76,9 @@ class filmController extends Controller
     {
         $film = film::findOrFail($id);
         $cate = category::get();
-        return view('admin/film/edit',compact('film','cate'));
+        $cinema = cinema::get();
+        $hour = hour::get();
+        return view('admin/film/edit',compact('film','cate','cinema','hour'));
     }
 
     /**
@@ -77,7 +86,29 @@ class filmController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $film = film::findOrFail($id);
+        $filmData = [
+            'name' => $request->name,
+            'thoiLuongChieu' => $request->thoiLuongChieu,
+            'ngayKhoiChieu' => $request->ngayKhoiChieu,
+            'ngonNgu' => $request->ngonNgu,
+            'trailer' => $request->trailer,
+            'daoDien' => $request->daoDien,
+            'dienVien' => $request->dienVien,
+            'status' => $request->status,
+            'content' => $request->content,
+       ];
+        if ($request->file('thumb') !== null) {
+            $thumb = $request->file('thumb')->getClientOriginalName();
+            $request->file('thumb')->storeAs('public/images', $thumb);
+            $filmData['thumb'] = $thumb; 
+        }
+      
+        $film->update($filmData);
+        $film->categories()->sync($request->id_cate);
+        $film->cinemas()->sync($request->id_cinema);
+        $film->hours()->sync($request->id_hour);
+        return redirect('/film/index');
     }
 
     /**

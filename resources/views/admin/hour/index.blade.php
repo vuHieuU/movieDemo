@@ -32,10 +32,10 @@
               <div class="col-lg-12">
                   <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
                       <div>
-                          <h4 class="mb-3">Users List</h4>
+                          <h4 class="mb-3">hour List</h4>
                           <p class="mb-0">The product list effectively dictates product presentation and provides space<br> to list your products and offering in the most appealing way.</p>
                       </div>
-                      <a href="/user/create" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add User</a>
+                      <a href="/hour/create" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add hour</a>
                   </div>
               </div>
               <div class="col-lg-12">
@@ -45,45 +45,38 @@
                           <tr class="ligth ligth-data">
                               <th>
                                   <div class="checkbox d-inline-block">
-                                      <input type="checkbox" class="checkbox-input" id="checkbox1">
+                                      <input type="checkbox" class="checkbox" id="checkbox1" data-master-checkbox>
                                       <label for="checkbox1" class="mb-0"></label>
                                   </div>
                               </th>
                               <th>Name</th>
-                              <th>thumb</th>
-                              <th>Thời lượng chiếu</th>
-                              <th>Ngày khởi chiếu</th>
-                              <th>Trạng thái</th>
+                            
                               <th>Action</th>
                           </tr>
                       </thead>
                       <tbody class="ligth-body">
 
-                        @foreach ($film as $item)
+                        @foreach ($hour as $item)
                             
                     
               
                           <tr>
                               <td>
                                   <div class="checkbox d-inline-block">
-                                      <input type="checkbox" class="checkbox-input" id="checkbox10">
+                                      <input type="checkbox" class="checkbox" id="checkbox10">
                                       <label for="checkbox10" class="mb-0"></label>
                                   </div>
                               </td>
-                              <td>{{ $item->name }}</td>
-                              <td><img src="{{ asset('storage/images/'. $item->thumb ) }}"  style="height: 130px;width:100px;"></td>
-                              <td>{{ $item->thoiLuongChieu }} Phút</td>
-                              <td>{{ $item->ngayKhoiChieu }}</td>
-                              <td>{{ $item->status }}</td>
+                              <td>{{ $item->time }}</td>
                             
                               <td>
                                   <div class="d-flex align-items-center list-action">
                                       <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
                                           href="#"><i class="ri-eye-line mr-0"></i></a>
                                       <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                          href="/film/edit/{{ $item->id }}"><i class="ri-pencil-line mr-0"></i></a>
+                                          href="/hour/edit/{{ $item->id }}"><i class="ri-pencil-line mr-0"></i></a>
                                       <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                          href="/film/delete/{{ $item->id }}"><i class="ri-delete-bin-line mr-0"></i></a>
+                                          href="/hour/delete/{{ $item->id }}"><i class="ri-delete-bin-line mr-0"></i></a>
                                   </div>
                               </td>
                           </tr>
@@ -132,6 +125,4 @@
       </div>
         </div>
       </div>
-      <!-- Wrapper End-->
-    
 @endsection

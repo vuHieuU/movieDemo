@@ -124,16 +124,59 @@
                                         </div>
                                     </div>
 
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Content</label>
+                                                  <textarea name="content" class="form-control" cols="30" rows="5"></textarea>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                      </div> 
+
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Permission</label>
+                                            <label>Thể Loại</label>
+                                            <input type="checkbox" class="checkbox mx-3" id="checkbox1" data-master-checkbox>
                                             <div class="row container m-auto">
                         
                                                 @foreach ($cate as $item)
-                                                <div class="form-check">
-                                                    <input class="form-check-input" name="id_cate[]" type="checkbox" value="{{ $item->id }}">
-                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                <div class="form-check mx-3 d-flex align-items-center">
+                                                    <input class="checkbox form-check-input" name="id_cate[]" type="checkbox" value="{{ $item->id }}">
+                                                    <label class="form-check-label mx-1">
                                                       {{ $item->name }}
+                                                    </label>
+                                                  </div>
+                                              @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Rạp chiếu</label>
+                                            <div class="row container m-auto">
+                        
+                                                @foreach ($cinema as $item)
+                                                <div class="form-check mx-3 d-flex align-items-center">
+                                                    <input class=" checkbox form-check-input" name="id_cinema[]" type="checkbox" value="{{ $item->id }}">
+                                                    <label class="form-check-label mx-1">
+                                                      {{ $item->name }}
+                                                    </label>
+                                                  </div>
+                                              @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Giờ chiếu</label>
+                                            <div class="row container m-auto">
+                        
+                                                @foreach ($hour as $item)
+                                                <div class="form-check mx-3 d-flex align-items-center">
+                                                    <input class=" checkbox form-check-input" name="id_hour[]" type="checkbox" value="{{ $item->id }}">
+                                                    <label class="form-check-label mx-1">
+                                                      {{ $item->time }}
                                                     </label>
                                                   </div>
                                               @endforeach

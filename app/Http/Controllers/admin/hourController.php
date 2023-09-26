@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\client;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\film;
+use App\Models\hour;
 use Illuminate\Http\Request;
 
-class homeController extends Controller
+class hourController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $films = film::take(5)->get();
-        return view('client.layout.main',compact('films'));
+        $hour = hour::get();
+        return view('admin.hour.index',compact('hour'));
     }
 
     /**
@@ -22,7 +22,7 @@ class homeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.hour.create');
     }
 
     /**
@@ -30,7 +30,11 @@ class homeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'time' => $request->time, 
+        ];
+        hour::create($data);
+        return redirect('/hour/index');
     }
 
     /**
@@ -38,9 +42,7 @@ class homeController extends Controller
      */
     public function show(string $id)
     {
-        $film = film::findOrFail($id);
-        $films = film::where('id', '!=' , $id)->take(4)->get();
-        return view('client.detail',compact('film','films'));
+        //
     }
 
     /**
@@ -48,7 +50,8 @@ class homeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $hour = hour::findOrFail($id);
+        return view('admin.hour.edit',compact('hour'));
     }
 
     /**
@@ -56,7 +59,12 @@ class homeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $hour = hour::findOrFail($id);
+        $dataUpdate = [
+            'time' => $request->time, 
+        ];
+        $hour->update($dataUpdate);
+        return redirect('/hour/index');
     }
 
     /**
@@ -64,6 +72,8 @@ class homeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $hour = hour::findOrFail($id);
+        $hour->delete($id);
+        return redirect('/hour/index');
     }
 }

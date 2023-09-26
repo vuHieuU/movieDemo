@@ -14,8 +14,9 @@ use App\Http\Controllers\Auth\LoginController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+//  home
 Route::get('/', [App\Http\Controllers\client\homeController::class, 'index']);
+Route::get('/detail/{id}', [App\Http\Controllers\client\homeController::class, 'show']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Auth::routes();
 
@@ -40,6 +41,33 @@ Route::get('/admin/home', [App\Http\Controllers\admin\HomeController::class, 'in
         Route::get('edit/{id}', [App\Http\Controllers\admin\filmController ::class, 'edit']);
         Route::post('update/{id}', [App\Http\Controllers\admin\filmController ::class, 'update']);
         Route::get('delete/{id}', [App\Http\Controllers\admin\filmController ::class, 'destroy']);
+    });
+    // hour
+    Route::prefix('hour')->group(function(){
+        Route::get('index', [App\Http\Controllers\admin\hourController::class, 'index']);
+        Route::get('create', [App\Http\Controllers\admin\hourController ::class, 'create']);
+        Route::post('store', [App\Http\Controllers\admin\hourController ::class, 'store']);
+        Route::get('edit/{id}', [App\Http\Controllers\admin\hourController ::class, 'edit']);
+        Route::post('update/{id}', [App\Http\Controllers\admin\hourController ::class, 'update']);
+        Route::get('delete/{id}', [App\Http\Controllers\admin\hourController ::class, 'destroy']);
+    });
+    // country
+    Route::prefix('country')->group(function(){
+        Route::get('index', [App\Http\Controllers\admin\countryController::class, 'index']);
+        Route::get('create', [App\Http\Controllers\admin\countryController ::class, 'create']);
+        Route::post('store', [App\Http\Controllers\admin\countryController ::class, 'store']);
+        Route::get('edit/{id}', [App\Http\Controllers\admin\countryController ::class, 'edit']);
+        Route::post('update/{id}', [App\Http\Controllers\admin\countryController ::class, 'update']);
+        Route::get('delete/{id}', [App\Http\Controllers\admin\countryController ::class, 'destroy']);
+    });
+    // cinema
+    Route::prefix('cinema')->group(function(){
+        Route::get('index', [App\Http\Controllers\admin\cinemaController::class, 'index']);
+        Route::get('create', [App\Http\Controllers\admin\cinemaController ::class, 'create']);
+        Route::post('store', [App\Http\Controllers\admin\cinemaController ::class, 'store']);
+        Route::get('edit/{id}', [App\Http\Controllers\admin\cinemaController ::class, 'edit']);
+        Route::post('update/{id}', [App\Http\Controllers\admin\cinemaController ::class, 'update']);
+        Route::get('delete/{id}', [App\Http\Controllers\admin\cinemaController ::class, 'destroy']);
     });
     // roles
     Route::prefix('role')->group(function(){

@@ -47,7 +47,10 @@
 
                                         <div
                                             class="row amy-ajax-content">
-
+                                             {{-- ******** --}}
+                                             @foreach ($films as $item)
+                                                 
+                                           
                                             <div
                                                 class="col-md-15 grid-item">
                                                 <article
@@ -56,30 +59,20 @@
                                                     <div
                                                         class="entry-thumb">
                                                         <img class
-                                                            src="http://demo.amytheme.com/movie/demo/elementor-single-cinema/wp-content/uploads/sites/2/2022/05/img_20-360x618_c.jpg"
+                                                            src="{{ asset('storage/images/'.$item->thumb) }}"
                                                             alt="Kubo and the Two Strings" />
-                                                        <div
+                                                        {{-- <div
                                                             class="right-info">
                                                             <span
                                                                 class="pg">
                                                                 G
                                                             </span>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                     <div
                                                         class="entry-content">
-                                                        <h4
-                                                            class="entry-title">
-                                                            Kubo and
-                                                            the Two
-                                                            Strings
-                                                        </h4>
-                                                        <div
-                                                            class="entry-date">
-                                                            Release:
-                                                            February
-                                                            15, 2022
-                                                        </div>
+                                                        <h4 class="entry-title">{{ $item->name }}</h4>
+                                                        <div class="entry-date">{{ $item->ngayKhoiChieu }}</div>
                                                         <div
                                                             class="entry-button">
                                                             <a
@@ -90,7 +83,7 @@
                                                                 Trailer
                                                             </a>
                                                             <a
-                                                                href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/movie/kubo-and-the-two-strings/">
+                                                                href="">
                                                                 <i
                                                                     aria-hidden="true"
                                                                     class="fa fa-exclamation"></i>
@@ -102,14 +95,7 @@
                                                         class="pic-caption open-left">
                                                         <h4
                                                             class="entry-title">
-                                                            <a
-                                                                href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/movie/kubo-and-the-two-strings/">
-                                                                Kubo
-                                                                and
-                                                                the
-                                                                Two
-                                                                Strings
-                                                            </a>
+                                                            <a href="">{{ $item->name }}</a>
                                                         </h4>
                                                         <span
                                                             class="pg">
@@ -117,37 +103,18 @@
                                                         </span>
                                                         <div
                                                             class="desc-mv">
-                                                            <p>
-                                                                <span>Release:
-                                                                </span>
-                                                                February
-                                                                15,
-                                                                2022
+                                                            <p><span>Release:</span>{{ $item->ngayKhoiChieu }}</p>
+
+                                                            <p><span>Genre:</span>
+                                                                @foreach ($item->categories as $category)
+                                                                    {{ $category->name }},
+                                                                @endforeach
+                                                            
                                                             </p>
 
-                                                            <p>
-                                                                <span>Genre:
-                                                                </span>
-                                                                <a
-                                                                    href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/genre/cartoon/">Cartoon</a>,
-                                                                <a
-                                                                    href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/genre/comic/">Comic</a>
-                                                            </p>
+                                                            <p><span>Duration:</span>{{ $item->thoiLuongChieu }}</p>
 
-                                                            <p>
-                                                                <span>Duration:
-                                                                </span>
-                                                                02
-                                                                hours
-                                                                00
-                                                                minutes
-                                                            </p>
-
-                                                            <p>
-                                                                <span>Language:
-                                                                </span>
-                                                                English
-                                                            </p>
+                                                            <p><span>Language:</span>{{ $item->ngonNgu }}</p>
                                                         </div>
 
                                                         <div
@@ -161,7 +128,7 @@
                                                                 Trailer
                                                             </a>
                                                             <a
-                                                                href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/movie/kubo-and-the-two-strings/">
+                                                                href="/detail/{{ $item->id }}">
                                                                 <i
                                                                     aria-hidden="true"
                                                                     class="fa fa-exclamation"></i>
@@ -172,491 +139,8 @@
                                                 </article>
                                             </div>
 
-                                            <div
-                                                class="col-md-15 grid-item">
-                                                <article
-                                                    class="entry-item"
-                                                    onclick>
-                                                    <div
-                                                        class="entry-thumb">
-                                                        <img class
-                                                            src="http://demo.amytheme.com/movie/demo/elementor-single-cinema/wp-content/uploads/sites/2/2022/05/img_19-360x618_c.jpg"
-                                                            alt="The Hurricane Heist" />
-                                                        <div
-                                                            class="right-info">
-                                                            <span
-                                                                class="pg">
-                                                                G
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="entry-content">
-                                                        <h4
-                                                            class="entry-title">
-                                                            The
-                                                            Hurricane
-                                                            Heist
-                                                        </h4>
-                                                        <div
-                                                            class="entry-date">
-                                                            Release:
-                                                            April
-                                                            29, 2022
-                                                        </div>
-                                                        <div
-                                                            class="entry-button">
-                                                            <a
-                                                                href="https://player.vimeo.com/video/51834631">
-                                                                <i
-                                                                    aria-hidden="true"
-                                                                    class="fa fa-play"></i>
-                                                                Trailer
-                                                            </a>
-                                                            <a
-                                                                href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/movie/the-hurricane-heist/">
-                                                                <i
-                                                                    aria-hidden="true"
-                                                                    class="fa fa-exclamation"></i>
-                                                                Detail
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="pic-caption open-left">
-                                                        <h4
-                                                            class="entry-title">
-                                                            <a
-                                                                href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/movie/the-hurricane-heist/">
-                                                                The
-                                                                Hurricane
-                                                                Heist
-                                                            </a>
-                                                        </h4>
-                                                        <span
-                                                            class="pg">
-                                                            G
-                                                        </span>
-                                                        <div
-                                                            class="desc-mv">
-                                                            <p>
-                                                                <span>Release:
-                                                                </span>
-                                                                April
-                                                                29,
-                                                                2022
-                                                            </p>
-
-                                                            <p>
-                                                                <span>Genre:
-                                                                </span>
-                                                                <a
-                                                                    href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/genre/comic/">Comic</a>,
-                                                                <a
-                                                                    href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/genre/magic/">Magic</a>
-                                                            </p>
-
-                                                            <p>
-                                                                <span>Duration:
-                                                                </span>
-                                                                01
-                                                                hours
-                                                                30
-                                                                minutes
-                                                            </p>
-
-                                                            <p>
-                                                                <span>Language:
-                                                                </span>
-                                                                English
-                                                            </p>
-                                                        </div>
-
-                                                        <div
-                                                            class="entry-button">
-                                                            <a
-                                                                href="https://player.vimeo.com/video/51834631"
-                                                                class="fancybox.iframe amy-fancybox">
-                                                                <i
-                                                                    aria-hidden="true"
-                                                                    class="fa fa-play"></i>
-                                                                Trailer
-                                                            </a>
-                                                            <a
-                                                                href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/movie/the-hurricane-heist/">
-                                                                <i
-                                                                    aria-hidden="true"
-                                                                    class="fa fa-exclamation"></i>
-                                                                Detail
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </article>
-                                            </div>
-
-                                            <div
-                                                class="col-md-15 grid-item">
-                                                <article
-                                                    class="entry-item"
-                                                    onclick>
-                                                    <div
-                                                        class="entry-thumb">
-                                                        <img class
-                                                            src="http://demo.amytheme.com/movie/demo/elementor-single-cinema/wp-content/uploads/sites/2/2022/05/img_17-360x618_c.jpg"
-                                                            alt="Jumanji: Welcome to the Jungle" />
-                                                        <div
-                                                            class="right-info">
-                                                            <span
-                                                                class="pg">
-                                                                G
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="entry-content">
-                                                        <h4
-                                                            class="entry-title">
-                                                            Jumanji:
-                                                            Welcome
-                                                            to the
-                                                            Jungle
-                                                        </h4>
-                                                        <div
-                                                            class="entry-date">
-                                                            Release:
-                                                            February
-                                                            16, 2022
-                                                        </div>
-                                                        <div
-                                                            class="entry-button">
-                                                            <a
-                                                                href="https://player.vimeo.com/video/51834631">
-                                                                <i
-                                                                    aria-hidden="true"
-                                                                    class="fa fa-play"></i>
-                                                                Trailer
-                                                            </a>
-                                                            <a
-                                                                href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/movie/jumanji-welcome-to-the-jungle/">
-                                                                <i
-                                                                    aria-hidden="true"
-                                                                    class="fa fa-exclamation"></i>
-                                                                Detail
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="pic-caption open-left">
-                                                        <h4
-                                                            class="entry-title">
-                                                            <a
-                                                                href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/movie/jumanji-welcome-to-the-jungle/">
-                                                                Jumanji:
-                                                                Welcome
-                                                                to
-                                                                the
-                                                                Jungle
-                                                            </a>
-                                                        </h4>
-                                                        <span
-                                                            class="pg">
-                                                            G
-                                                        </span>
-                                                        <div
-                                                            class="desc-mv">
-                                                            <p>
-                                                                <span>Release:
-                                                                </span>
-                                                                February
-                                                                16,
-                                                                2022
-                                                            </p>
-
-                                                            <p>
-                                                                <span>Genre:
-                                                                </span>
-                                                                <a
-                                                                    href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/genre/cartoon/">Cartoon</a>,
-                                                                <a
-                                                                    href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/genre/sci-fi/">Sci-fi</a>
-                                                            </p>
-
-                                                            <p>
-                                                                <span>Duration:
-                                                                </span>
-                                                                02
-                                                                hours
-                                                                30
-                                                                minutes
-                                                            </p>
-
-                                                            <p>
-                                                                <span>Language:
-                                                                </span>
-                                                                English
-                                                            </p>
-                                                        </div>
-
-                                                        <div
-                                                            class="entry-button">
-                                                            <a
-                                                                href="https://player.vimeo.com/video/51834631"
-                                                                class="fancybox.iframe amy-fancybox">
-                                                                <i
-                                                                    aria-hidden="true"
-                                                                    class="fa fa-play"></i>
-                                                                Trailer
-                                                            </a>
-                                                            <a
-                                                                href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/movie/jumanji-welcome-to-the-jungle/">
-                                                                <i
-                                                                    aria-hidden="true"
-                                                                    class="fa fa-exclamation"></i>
-                                                                Detail
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </article>
-                                            </div>
-
-                                            <div
-                                                class="col-md-15 grid-item">
-                                                <article
-                                                    class="entry-item"
-                                                    onclick>
-                                                    <div
-                                                        class="entry-thumb">
-                                                        <img class
-                                                            src="http://demo.amytheme.com/movie/demo/elementor-single-cinema/wp-content/uploads/sites/2/2022/05/img_18-360x618_c.jpg"
-                                                            alt="Death Wish" />
-                                                        <div
-                                                            class="right-info">
-                                                            <span
-                                                                class="pg">
-                                                                G
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="entry-content">
-                                                        <h4
-                                                            class="entry-title">
-                                                            Death
-                                                            Wish
-                                                        </h4>
-                                                        <div
-                                                            class="entry-date">
-                                                            Release:
-                                                            April
-                                                            23, 2022
-                                                        </div>
-                                                        <div
-                                                            class="entry-button">
-                                                            <a
-                                                                href="https://player.vimeo.com/video/51834631">
-                                                                <i
-                                                                    aria-hidden="true"
-                                                                    class="fa fa-play"></i>
-                                                                Trailer
-                                                            </a>
-                                                            <a
-                                                                href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/movie/death-wish/">
-                                                                <i
-                                                                    aria-hidden="true"
-                                                                    class="fa fa-exclamation"></i>
-                                                                Detail
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="pic-caption open-left">
-                                                        <h4
-                                                            class="entry-title">
-                                                            <a
-                                                                href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/movie/death-wish/">
-                                                                Death
-                                                                Wish
-                                                            </a>
-                                                        </h4>
-                                                        <span
-                                                            class="pg">
-                                                            G
-                                                        </span>
-                                                        <div
-                                                            class="desc-mv">
-                                                            <p>
-                                                                <span>Release:
-                                                                </span>
-                                                                April
-                                                                23,
-                                                                2022
-                                                            </p>
-
-                                                            <p>
-                                                                <span>Genre:
-                                                                </span>
-                                                                <a
-                                                                    href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/genre/cartoon/">Cartoon</a>,
-                                                                <a
-                                                                    href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/genre/comic/">Comic</a>
-                                                            </p>
-
-                                                            <p>
-                                                                <span>Duration:
-                                                                </span>
-                                                                01
-                                                                hours
-                                                                00
-                                                                minutes
-                                                            </p>
-
-                                                            <p>
-                                                                <span>Language:
-                                                                </span>
-                                                                English
-                                                            </p>
-                                                        </div>
-
-                                                        <div
-                                                            class="entry-button">
-                                                            <a
-                                                                href="https://player.vimeo.com/video/51834631"
-                                                                class="fancybox.iframe amy-fancybox">
-                                                                <i
-                                                                    aria-hidden="true"
-                                                                    class="fa fa-play"></i>
-                                                                Trailer
-                                                            </a>
-                                                            <a
-                                                                href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/movie/death-wish/">
-                                                                <i
-                                                                    aria-hidden="true"
-                                                                    class="fa fa-exclamation"></i>
-                                                                Detail
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </article>
-                                            </div>
-
-                                            <div
-                                                class="col-md-15 grid-item">
-                                                <article
-                                                    class="entry-item"
-                                                    onclick>
-                                                    <div
-                                                        class="entry-thumb">
-                                                        <img class
-                                                            src="http://demo.amytheme.com/movie/demo/elementor-single-cinema/wp-content/uploads/sites/2/2022/05/img_15-360x618_c.jpg"
-                                                            alt="Supersonic" />
-                                                        <div
-                                                            class="right-info">
-                                                            <span
-                                                                class="pg">
-                                                                G
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="entry-content">
-                                                        <h4
-                                                            class="entry-title">
-                                                            Supersonic
-                                                        </h4>
-                                                        <div
-                                                            class="entry-date">
-                                                            Release:
-                                                            April 9,
-                                                            2022
-                                                        </div>
-                                                        <div
-                                                            class="entry-button">
-                                                            <a
-                                                                href="https://player.vimeo.com/video/51834631">
-                                                                <i
-                                                                    aria-hidden="true"
-                                                                    class="fa fa-play"></i>
-                                                                Trailer
-                                                            </a>
-                                                            <a
-                                                                href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/movie/supersonic/">
-                                                                <i
-                                                                    aria-hidden="true"
-                                                                    class="fa fa-exclamation"></i>
-                                                                Detail
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="pic-caption open-left">
-                                                        <h4
-                                                            class="entry-title">
-                                                            <a
-                                                                href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/movie/supersonic/">
-                                                                Supersonic
-                                                            </a>
-                                                        </h4>
-                                                        <span
-                                                            class="pg">
-                                                            G
-                                                        </span>
-                                                        <div
-                                                            class="desc-mv">
-                                                            <p>
-                                                                <span>Release:
-                                                                </span>
-                                                                April
-                                                                9,
-                                                                2022
-                                                            </p>
-
-                                                            <p>
-                                                                <span>Genre:
-                                                                </span>
-                                                                <a
-                                                                    href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/genre/cartoon/">Cartoon</a>,
-                                                                <a
-                                                                    href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/genre/magic/">Magic</a>
-                                                            </p>
-
-                                                            <p>
-                                                                <span>Duration:
-                                                                </span>
-                                                                02
-                                                                hours
-                                                                00
-                                                                minutes
-                                                            </p>
-
-                                                            <p>
-                                                                <span>Language:
-                                                                </span>
-                                                                English
-                                                            </p>
-                                                        </div>
-
-                                                        <div
-                                                            class="entry-button">
-                                                            <a
-                                                                href="https://player.vimeo.com/video/51834631"
-                                                                class="fancybox.iframe amy-fancybox">
-                                                                <i
-                                                                    aria-hidden="true"
-                                                                    class="fa fa-play"></i>
-                                                                Trailer
-                                                            </a>
-                                                            <a
-                                                                href="http://demo.amytheme.com/movie/demo/elementor-single-cinema/movie/supersonic/">
-                                                                <i
-                                                                    aria-hidden="true"
-                                                                    class="fa fa-exclamation"></i>
-                                                                Detail
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </article>
-                                            </div>
-
+                                            @endforeach
+                                             {{-- ******** --}}
                                         </div>
 
                                     </div>

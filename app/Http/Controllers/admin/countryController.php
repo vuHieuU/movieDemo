@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\client;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\film;
 use Illuminate\Http\Request;
+use App\Models\country;
 
-class homeController extends Controller
+class countryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $films = film::take(5)->get();
-        return view('client.layout.main',compact('films'));
+        $country = country::get();
+        return view('admin/country/index',compact('country'));
     }
 
     /**
@@ -22,7 +22,7 @@ class homeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/country/create');
     }
 
     /**
@@ -30,7 +30,11 @@ class homeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $countryData = [
+            'name' => $request->name,
+        ];
+           country::insert($countryData);
+           return redirect('/country/index');
     }
 
     /**
@@ -38,9 +42,7 @@ class homeController extends Controller
      */
     public function show(string $id)
     {
-        $film = film::findOrFail($id);
-        $films = film::where('id', '!=' , $id)->take(4)->get();
-        return view('client.detail',compact('film','films'));
+        //
     }
 
     /**
@@ -48,7 +50,8 @@ class homeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $country = country::findOrFail($id);
+        return view('admin/country/edit',compact('country'));
     }
 
     /**
@@ -56,7 +59,12 @@ class homeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $country = country::findOrFail($id);
+        $countryUpdate = [
+            'name' => $request->name,
+        ];
+          $country->update($countryUpdate);
+           return redirect('/country/index');
     }
 
     /**
@@ -64,6 +72,8 @@ class homeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $country = country::findOrFail($id);
+          $country->delete($id);
+           return redirect('/country/index');
     }
 }

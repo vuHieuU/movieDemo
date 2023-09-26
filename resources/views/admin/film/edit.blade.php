@@ -124,17 +124,61 @@
                                         </div>
                                     </div>
 
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Content</label>
+                                                  <textarea name="content" class="form-control" cols="30" rows="5">{{ $film->content }}</textarea>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                      </div> 
+
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Permission</label>
+                                            <label>Thể loại</label>
                                             <div class="row container m-auto">
                         
                                                 @foreach ($cate as $item)
-                                                <div class="form-check">
+                                                <div class="form-check mx-3 d-flex align-items-center">
                                                     <input class="form-check-input" name="id_cate[]" type="checkbox"
-                                                    {{ $cate->contains('name', $item->name) ? 'checked':''}} value="{{ $item->id }}">
-                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                    {{ $film->categories->contains('name', $item->name) ? 'checked':''}} value="{{ $item->id }}">
+                                                    <label class="form-check-label mx-1">
                                                       {{ $item->name }}
+                                                    </label>
+                                                  </div>
+                                              @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Rạp chiếu</label>
+                                            <div class="row container m-auto">
+                        
+                                                @foreach ($cinema as $item)
+                                                <div class="form-check mx-3 d-flex align-items-center">
+                                                    <input class="form-check-input" name="id_cinema[]" type="checkbox"
+                                                    {{  $film->cinemas->contains('name', $item->name) ? 'checked':''}} value="{{ $item->id }}">
+                                                    <label class="form-check-label mx-1">
+                                                      {{ $item->name }}
+                                                    </label>
+                                                  </div>
+                                              @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Giờ chiếu</label>
+                                            <div class="row container m-auto">
+                        
+                                                @foreach ($hour as $item)
+                                                <div class="form-check mx-3 d-flex align-items-center">
+                                                    <input class="form-check-input" name="id_hour[]" type="checkbox"
+                                                    {{  $film->hours->contains('time', $item->time) ? 'checked':''}} value="{{ $item->id }}">
+                                                    <label class="form-check-label mx-1">
+                                                      {{ $item->time }}
                                                     </label>
                                                   </div>
                                               @endforeach
@@ -143,7 +187,7 @@
                                     </div>
                                     
                                 
-                                    <button type="submit" class="btn btn-primary mr-2">Add Film</button>
+                                    <button type="submit" class="btn btn-primary mr-2">Update Film</button>
                                     <button type="reset" class="btn btn-danger mr-2">Reset</button>
                                     {{-- <a href="/user/index"><button type="submit" class="btn btn-danger">Back</button></a> --}}
                             </div>

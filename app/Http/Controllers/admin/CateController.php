@@ -72,6 +72,8 @@ class CateController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = category::findOrFail($id);
+        $category->delete($id);
+         return redirect('/cate/index');
     }
 }
