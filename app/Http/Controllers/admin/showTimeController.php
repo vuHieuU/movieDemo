@@ -1,21 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\client;
+namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\film;
+use App\Models\room;
+use App\Models\showtimes;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\hour;
 
-class homeController extends Controller
+class showTimeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $films = film::take(5)->get();
-        $filmss = film::get();
-        return view('client.layout.main',compact('films','filmss'));
+        $showTime = showtimes::get();
+        return view('admin.showTime.index',compact('showTime'));
     }
 
     /**
@@ -23,7 +25,10 @@ class homeController extends Controller
      */
     public function create()
     {
-        //
+        $film = film::get();
+        $room = room::get();
+        $hour = hour::get();
+        return view('admin.showTime.create',compact('film','room','hour'));
     }
 
     /**
@@ -31,7 +36,15 @@ class homeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'film_id' => $request->film_id,
+            'room_id' => $request->room_id,
+            'hour_id' => $request->hour_id,
+            'day' => $request->day,
+            'content' => $request->content,
+        ];
+        showtimes::create($data);
+        return redirect('/showTime/index');
     }
 
     /**
@@ -39,9 +52,7 @@ class homeController extends Controller
      */
     public function show(string $id)
     {
-        $film = film::findOrFail($id);
-        $films = film::where('id', '!=' , $id)->take(4)->get();
-        return view('client.detail',compact('film','films'));
+        //
     }
 
     /**

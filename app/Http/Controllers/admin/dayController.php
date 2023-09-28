@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\client;
+namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\film;
+use App\Models\day;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class homeController extends Controller
+class dayController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $films = film::take(5)->get();
-        $filmss = film::get();
-        return view('client.layout.main',compact('films','filmss'));
+        $day = day::get();
+        return view('admin.day.index',compact('day'));
     }
 
     /**
@@ -23,7 +22,7 @@ class homeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.day.create');
     }
 
     /**
@@ -31,7 +30,11 @@ class homeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'day' => $request->day, 
+        ];
+        day::create($data);
+        return redirect('/day/index');
     }
 
     /**
@@ -39,9 +42,7 @@ class homeController extends Controller
      */
     public function show(string $id)
     {
-        $film = film::findOrFail($id);
-        $films = film::where('id', '!=' , $id)->take(4)->get();
-        return view('client.detail',compact('film','films'));
+        //
     }
 
     /**
@@ -49,7 +50,8 @@ class homeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $day = day::findOrFail($id);
+        return view('admin.day.edit',compact('day'));
     }
 
     /**
@@ -57,7 +59,12 @@ class homeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $day = day::findOrFail($id);
+        $dataUpdate = [
+            'day' => $request->day, 
+        ];
+        $day->update($dataUpdate);
+        return redirect('/day/index');
     }
 
     /**
@@ -65,6 +72,8 @@ class homeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $day = day::findOrFail($id);
+        $day->delete($id);
+        return redirect('/day/index');
     }
 }

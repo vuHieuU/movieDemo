@@ -42,6 +42,15 @@ Route::get('/admin/home', [App\Http\Controllers\admin\HomeController::class, 'in
         Route::post('update/{id}', [App\Http\Controllers\admin\filmController ::class, 'update']);
         Route::get('delete/{id}', [App\Http\Controllers\admin\filmController ::class, 'destroy']);
     });
+    // ShowTime
+    Route::prefix('showTime')->group(function(){
+        Route::get('index', [App\Http\Controllers\admin\showTimeController::class, 'index']);
+        Route::get('create', [App\Http\Controllers\admin\showTimeController ::class, 'create']);
+        Route::post('store', [App\Http\Controllers\admin\showTimeController ::class, 'store']);
+        Route::get('edit/{id}', [App\Http\Controllers\admin\showTimeController ::class, 'edit']);
+        Route::post('update/{id}', [App\Http\Controllers\admin\showTimeController ::class, 'update']);
+        Route::get('delete/{id}', [App\Http\Controllers\admin\showTimeController ::class, 'destroy']);
+    });
     // hour
     Route::prefix('hour')->group(function(){
         Route::get('index', [App\Http\Controllers\admin\hourController::class, 'index']);
@@ -50,6 +59,24 @@ Route::get('/admin/home', [App\Http\Controllers\admin\HomeController::class, 'in
         Route::get('edit/{id}', [App\Http\Controllers\admin\hourController ::class, 'edit']);
         Route::post('update/{id}', [App\Http\Controllers\admin\hourController ::class, 'update']);
         Route::get('delete/{id}', [App\Http\Controllers\admin\hourController ::class, 'destroy']);
+    });
+    // day
+    Route::prefix('day')->group(function(){
+        Route::get('index', [App\Http\Controllers\admin\dayController::class, 'index']);
+        Route::get('create', [App\Http\Controllers\admin\dayController ::class, 'create']);
+        Route::post('store', [App\Http\Controllers\admin\dayController ::class, 'store']);
+        Route::get('edit/{id}', [App\Http\Controllers\admin\dayController ::class, 'edit']);
+        Route::post('update/{id}', [App\Http\Controllers\admin\dayController ::class, 'update']);
+        Route::get('delete/{id}', [App\Http\Controllers\admin\dayController ::class, 'destroy']);
+    });
+    // dayHour
+    Route::prefix('dayHour')->group(function(){
+        Route::get('index', [App\Http\Controllers\admin\dayHourController::class, 'index']);
+        Route::get('create', [App\Http\Controllers\admin\dayHourController ::class, 'create']);
+        Route::post('store', [App\Http\Controllers\admin\dayHourController ::class, 'store']);
+        Route::get('edit/{id}', [App\Http\Controllers\admin\dayHourController ::class, 'edit']);
+        Route::post('update/{id}', [App\Http\Controllers\admin\dayHourController ::class, 'update']);
+        Route::get('delete/{id}', [App\Http\Controllers\admin\dayHourController ::class, 'destroy']);
     });
     // country
     Route::prefix('country')->group(function(){
@@ -68,6 +95,24 @@ Route::get('/admin/home', [App\Http\Controllers\admin\HomeController::class, 'in
         Route::get('edit/{id}', [App\Http\Controllers\admin\cinemaController ::class, 'edit']);
         Route::post('update/{id}', [App\Http\Controllers\admin\cinemaController ::class, 'update']);
         Route::get('delete/{id}', [App\Http\Controllers\admin\cinemaController ::class, 'destroy']);
+    });
+    // room
+    Route::prefix('room')->group(function(){
+        Route::get('index', [App\Http\Controllers\admin\roomController::class, 'index']);
+        Route::get('create', [App\Http\Controllers\admin\roomController ::class, 'create']);
+        Route::post('store', [App\Http\Controllers\admin\roomController ::class, 'store']);
+        Route::get('edit/{id}', [App\Http\Controllers\admin\roomController ::class, 'edit']);
+        Route::post('update/{id}', [App\Http\Controllers\admin\roomController ::class, 'update']);
+        Route::get('delete/{id}', [App\Http\Controllers\admin\roomController ::class, 'destroy']);
+    });
+    // seat
+    Route::prefix('seat')->group(function(){
+        Route::get('index', [App\Http\Controllers\admin\seatController::class, 'index']);
+        Route::get('create', [App\Http\Controllers\admin\seatController ::class, 'create']);
+        Route::post('store', [App\Http\Controllers\admin\seatController ::class, 'store']);
+        Route::get('edit/{id}', [App\Http\Controllers\admin\seatController ::class, 'edit']);
+        Route::post('update/{id}', [App\Http\Controllers\admin\seatController ::class, 'update']);
+        Route::get('delete/{id}', [App\Http\Controllers\admin\seatController ::class, 'destroy']);
     });
     // roles
     Route::prefix('role')->group(function(){
@@ -90,4 +135,5 @@ Route::get('/admin/home', [App\Http\Controllers\admin\HomeController::class, 'in
 
         // cart
         Route::get('ticketDateTime/{film_id}',[dateTimeController::class,'index'])->name('date');
+        Route::post('ticketDateTime/{film_id}',[dateTimeController::class,'handleDateRequest'])->name('date');
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\cart;
 use App\Models\film;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\showtimes;
 use Illuminate\Support\Facades\Auth;
 
 class dateTimeController extends Controller
@@ -14,11 +15,16 @@ class dateTimeController extends Controller
      */
     public function index(Request $request, $id)
     {
-        
-        // $ticket = Auth::id();
-        // $film_id = $request->input('id');
         $film = film::findOrFail($id);
-        // dd($film_id);
-        return view('client.cart.dateTime',compact('film'));
+        $showtimes = $film->showtimes;
+        return view('client.cart.dateTime',compact('film','showtimes'));
+    }
+    public function handleDateRequest(Request $request, $film_id)
+    {
+        $data = [
+        'selectedDate' => $request->selectedDate,
+        'selectedHour' => $request->selectedHour,
+       ];
+        dd($data);
     }
 }

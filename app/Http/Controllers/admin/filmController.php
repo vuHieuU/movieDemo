@@ -27,8 +27,7 @@ class filmController extends Controller
     {
         $cate = category::get();
         $cinema = cinema::get();
-        $hour = hour::get();
-        return view('admin.film.create',compact('cate','cinema','hour'));
+        return view('admin.film.create',compact('cate','cinema'));
     }
 
     /**
@@ -57,7 +56,6 @@ class filmController extends Controller
         $film = film::create($filmData);
         $film->categories()->attach($request->id_cate);
         $film->cinemas()->attach($request->id_cinema);
-        $film->hours()->attach($request->id_hour);
         return redirect('/film/index');
     }
 
@@ -77,8 +75,7 @@ class filmController extends Controller
         $film = film::findOrFail($id);
         $cate = category::get();
         $cinema = cinema::get();
-        $hour = hour::get();
-        return view('admin/film/edit',compact('film','cate','cinema','hour'));
+        return view('admin/film/edit',compact('film','cate','cinema'));
     }
 
     /**
@@ -107,7 +104,6 @@ class filmController extends Controller
         $film->update($filmData);
         $film->categories()->sync($request->id_cate);
         $film->cinemas()->sync($request->id_cinema);
-        $film->hours()->sync($request->id_hour);
         return redirect('/film/index');
     }
 

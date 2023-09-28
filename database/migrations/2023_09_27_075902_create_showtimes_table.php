@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('films_hours', function (Blueprint $table) {
+        Schema::create('showtimes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('film_id');
+            $table->unsignedBigInteger('room_id');
             $table->unsignedBigInteger('hour_id');
-            $table->string('isActive')->default(1);
+            $table->date('day');
+            $table->text('content')->nullable();
             $table->timestamps();
-    
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->foreign('film_id')->references('id')->on('films')->onDelete('cascade');
             $table->foreign('hour_id')->references('id')->on('hours')->onDelete('cascade');
         });
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('films_hours');
+        Schema::dropIfExists('showtimes');
     }
 };

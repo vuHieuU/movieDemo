@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\client;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\film;
+use App\Models\seat;
 use Illuminate\Http\Request;
 
-class homeController extends Controller
+class seatController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $films = film::take(5)->get();
-        $filmss = film::get();
-        return view('client.layout.main',compact('films','filmss'));
+        $seat = seat::get();
+        return view('admin.seat.index',compact('seat'));
     }
 
     /**
@@ -23,7 +22,7 @@ class homeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.seat.create');
     }
 
     /**
@@ -31,7 +30,11 @@ class homeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'seat_number' => $request->seat_number,
+        ];
+        seat::create($data);
+         return redirect('/seat/index');
     }
 
     /**
@@ -39,9 +42,7 @@ class homeController extends Controller
      */
     public function show(string $id)
     {
-        $film = film::findOrFail($id);
-        $films = film::where('id', '!=' , $id)->take(4)->get();
-        return view('client.detail',compact('film','films'));
+        //
     }
 
     /**
@@ -49,7 +50,8 @@ class homeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $seat = seat::findOrFail($id);
+        return view('admin.seat.edit',compact('seat'));
     }
 
     /**
@@ -57,7 +59,12 @@ class homeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $seat = seat::findOrFail($id);
+        $dataUpdate = [
+            'seat_number' => $request->seat_number,
+        ];
+        $seat->update($dataUpdate);
+         return redirect('/seat/index');
     }
 
     /**
@@ -65,6 +72,8 @@ class homeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $seat = seat::findOrFail($id);
+        $seat->delete($id);
+        return redirect('/seat/index');
     }
 }

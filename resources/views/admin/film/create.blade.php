@@ -167,24 +167,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Giờ chiếu</label>
-                                            <div class="row container m-auto">
                         
-                                                @foreach ($hour as $item)
-                                                <div class="form-check mx-3 d-flex align-items-center">
-                                                    <input class=" checkbox form-check-input" name="id_hour[]" type="checkbox" value="{{ $item->id }}">
-                                                    <label class="form-check-label mx-1">
-                                                      {{ $item->time }}
-                                                    </label>
-                                                  </div>
-                                              @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                
                                     <button type="submit" class="btn btn-primary mr-2">Add Film</button>
                                     <button type="reset" class="btn btn-danger mr-2">Reset</button>
                                     {{-- <a href="/user/index"><button type="submit" class="btn btn-danger">Back</button></a> --}}

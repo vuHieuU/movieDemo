@@ -29,8 +29,8 @@ class film extends Model
 {
     return $this->belongsToMany(Cinema::class,'cinemas_films','film_id','cinema_id');
 }
-    public function hours()
+public function showtimes()
 {
-    return $this->belongsToMany(hour::class,'films_hours','film_id','hour_id');
+    return $this->hasMany(showtimes::class);
 }
 }

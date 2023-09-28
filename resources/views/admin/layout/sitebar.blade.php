@@ -40,28 +40,6 @@
                         </li>
                     </ul>
                 </li>
-                {{-- hour --}}
-                <li class=" ">
-                    <a href="#hour" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa-solid fa-hourglass-start"></i>
-                           <span class="ml-4">hour</span>
-                        <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
-                        </svg>
-                    </a>
-                    <ul id="hour" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                        <li class="">
-                            <a href="/hour/index">
-                                <i class="las la-minus"></i><span>List hour</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="/hour/create">
-                                <i class="las la-minus"></i><span>Add hour</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 {{-- film --}}
                 <li class=" ">
                     <a href="#film" class="collapsed" data-toggle="collapse" aria-expanded="false">
@@ -84,7 +62,128 @@
                         </li>
                     </ul>
                 </li>
-                {{-- cinemas --}}
+                {{-- showTime --}}
+                <li class=" ">
+                    <a href="#showTime" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa-solid fa-film"></i>
+                        <span class="ml-4">showTime</span>
+                        <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                        </svg>
+                    </a>
+                    <ul id="showTime" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                        <li class="">
+                            <a href="/showTime/index">
+                                <i class="las la-minus"></i><span>List showTime</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="/showTime/create">
+                                <i class="las la-minus"></i><span>Add showTime</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                   {{-- time --}}
+                   <li class=" ">
+                    <a href="#day" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa-solid fa-hourglass-start"></i>
+                           <span class="ml-4">Time</span>
+                        <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                        </svg>
+                    </a>
+                    <ul id="day" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                        <li class="">
+                            <a href="/day/index">
+                                <i class="las la-minus"></i><span>List day</span>
+                            </a>
+                        </li>
+                        {{-- <li class="">
+                            <a href="/day/create">
+                                <i class="las la-minus"></i><span>Add day</span>
+                            </a>
+                        </li> --}}
+                        <li class="">
+                            <a href="/hour/index">
+                                <i class="las la-minus"></i><span>List hour</span>
+                            </a>
+                        </li>
+                        {{-- <li class="">
+                            <a href="/hour/create">
+                                <i class="las la-minus"></i><span>Add hour</span>
+                            </a>
+                        </li> --}}
+                    </ul>
+                </li>
+                   {{-- dayHour --}}
+                   <li class=" ">
+                    <a href="#dayHour" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa-solid fa-hourglass-start"></i>
+                           <span class="ml-4">day Hour</span>
+                        <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                        </svg>
+                    </a>
+                    <ul id="dayHour" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                        <li class="">
+                            <a href="/dayHour/index">
+                                <i class="las la-minus"></i><span>List day Hour</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="/dayHour/create">
+                                <i class="las la-minus"></i><span>Add day Hour</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+       
+                    {{-- seats --}}
+                    <li class=" ">
+                        <a href="#seat" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                            <i class="fa-solid fa-couch"></i>
+                            <span class="ml-4">seat</span>
+                            <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                            </svg>
+                        </a>
+                        <ul id="seat" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                            <li class="">
+                                <a href="/seat/index">
+                                    <i class="las la-minus"></i><span>List seat</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/seat/create">
+                                    <i class="las la-minus"></i><span>Add seat</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                      {{-- Rooms --}}
+                      <li class=" ">
+                        <a href="#room" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                            <i class="fa-solid fa-couch"></i>
+                            <span class="ml-4">room</span>
+                            <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                            </svg>
+                        </a>
+                        <ul id="room" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                            <li class="">
+                                <a href="/room/index">
+                                    <i class="las la-minus"></i><span>List room</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/room/create">
+                                    <i class="las la-minus"></i><span>Add room</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                             {{-- cinemas --}}
                 <li class=" ">
                     <a href="#cinema" class="collapsed" data-toggle="collapse" aria-expanded="false">
                         <i class="fa-brands fa-linux"></i>
