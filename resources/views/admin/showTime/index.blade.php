@@ -78,9 +78,9 @@
                                       <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
                                           href="#"><i class="ri-eye-line mr-0"></i></a>
                                       <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                          href="/cinema/edit/{{ $item->id }}"><i class="ri-pencil-line mr-0"></i></a>
+                                          href="/showTime/edit/{{ $item->id }}"><i class="ri-pencil-line mr-0"></i></a>
                                       <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                          href="/cinema/delete/{{ $item->id }}"><i class="ri-delete-bin-line mr-0"></i></a>
+                                          href="/showTime/delete/{{ $item->id }}"><i class="ri-delete-bin-line mr-0"></i></a>
                                   </div>
                               </td>
                           </tr>

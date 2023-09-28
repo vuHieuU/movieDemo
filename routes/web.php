@@ -135,5 +135,5 @@ Route::get('/admin/home', [App\Http\Controllers\admin\HomeController::class, 'in
 
         // cart
         Route::get('ticketDateTime/{film_id}',[dateTimeController::class,'index'])->name('date');
-        Route::post('ticketDateTime/{film_id}',[dateTimeController::class,'handleDateRequest'])->name('date');
+        Route::get('room/{film_id}',[dateTimeController::class,'room'])->name('room');
 });

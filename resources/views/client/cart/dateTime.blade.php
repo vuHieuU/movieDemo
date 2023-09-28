@@ -12,10 +12,11 @@
             <h2 class="fw-bold">Chọn ngày xem</h2>
             <div class="d-flex align-items-center">
                 <h3 class="fw-bold mx-4 mt-3">Date: </h3>
+                @php $uniqueDates = []; @endphp
                 @foreach ($showtimes as $showtime)
-                    @if (!isset($previousDate) || $showtime->day != $previousDate)
+                    @if (!in_array($showtime->day, $uniqueDates))
                         <h2 class="ms-5 mt-3 showtime-day date-button" data-showtime-date="{{ $showtime->day }}">{{ $showtime->day }}</h2>
-                        @php $previousDate = $showtime->day @endphp
+                        @php $uniqueDates[] = $showtime->day; @endphp
                     @endif
                 @endforeach
             </div>
@@ -29,12 +30,25 @@
         <div class="form-group">
             <h2 class="fw-bold" style="padding-left:50px ">Chọn giờ xem</h2>
             <div class="w-100 py-3 mt-4 text-center" style="background-color: rgb(224, 242, 242);">
+                @php $uniqueTimesByDate = []; @endphp
                 @foreach ($showtimes as $item)
-                <button class="btn btn-warning px-5 py-3 fw-medium fs-5 custom-bg-red hour-button"
-                    data-showtime-date="{{ $item->day }}" style="margin-right: 20px; margin-top:10px; display: none;"
-                    onclick="selectHour('{{ $item->hours->time }}')">
-                    {{ $item->hours->time }}
-                </button>
+                    @php
+                        $showtimeDate = $item->day;
+                        $showtimeTime = $item->hours->time;
+                    @endphp
+                
+                        @if (!isset($uniqueTimesByDate[$showtimeDate]))
+                            @php $uniqueTimesByDate[$showtimeDate] = []; @endphp
+                        @endif
+                
+                    @if (!in_array($showtimeTime, $uniqueTimesByDate[$showtimeDate]))
+                        <button class="btn btn-warning px-5 py-3 fw-medium fs-5 custom-bg-red hour-button"
+                            data-showtime-date="{{ $showtimeDate }}" style="margin-right: 20px; margin-top:10px; display: none;"
+                            onclick="selectHour('{{ $showtimeTime }}')">
+                            {{ $showtimeTime }}
+                        </button>
+                        @php $uniqueTimesByDate[$showtimeDate][] = $showtimeTime; @endphp
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -43,7 +57,7 @@
     <div class="btn btn-light my-5 w-100 py-5">
         <h3 class="fw-semibold" id="selectedHourText">Giờ </h3>
     </div>
-    <form method="POST" action="{{route('date',['film_id'=> $film->id]) }}">
+    <form method="GET" action="{{route('room',['film_id'=> $film->id]) }}">
         @csrf
         <input type="hidden" name="selectedDate" id="selectedDate" value="">
         <input type="hidden" name="selectedHour" id="selectedHour" value="">
@@ -52,16 +66,16 @@
             <button type="submit" class="btn btn-danger px-5 py-2 fs-4">
                 Tiếp tục
                 <br>
-                Đặt chỗ ngồi
+                Chọn phòng
             </button>
         </div>
     </form>
 </div>
 
 <script>
-    var selectedDate = ""; // Biến để lưu trữ ngày được chọn
-
-    // Hàm được gọi khi người dùng chọn ngày
+    var selectedDate = "";
+    var selectedHour = "";
+    var uniqueHours = [];
     function selectDate(date) {
         selectedDate = date;
         var selectedDateElement = document.getElementById("selectedDate");
@@ -100,14 +114,26 @@
         event.currentTarget.classList.add("selected-hour");
 }
 
-    // Sự kiện click trên mỗi ngày để xác định ngày được chọn
+    // Sự kiện click trên mỗi ngày để xác định ngày được chọn và hiển thị giờ xem tương ứng
     var showtimeDayElements = document.querySelectorAll(".showtime-day");
     showtimeDayElements.forEach(function (element) {
         element.addEventListener("click", function () {
             var selectedDay = element.getAttribute("data-showtime-date");
             selectDate(selectedDay);
+
+            // Hiển thị giờ xem tương ứng với ngày được chọn và ẩn giờ xem của các ngày khác
+            var hourButtons = document.querySelectorAll(".hour-button");
+            hourButtons.forEach(function (button) {
+                var showtimeDate = button.getAttribute("data-showtime-date");
+                if (showtimeDate === selectedDay) {
+                    button.style.display = "inline-block";
+                } else {
+                    button.style.display = "none";
+                }
+            });
         });
     });
+
 </script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">

@@ -82,10 +82,15 @@
                                 <i class="las la-minus"></i><span>Add showTime</span>
                             </a>
                         </li>
+                        <li class="">
+                            <a href="/hour/index">
+                                <i class="las la-minus"></i><span>List hour</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                    {{-- time --}}
-                   <li class=" ">
+                   {{-- <li class=" ">
                     <a href="#day" class="collapsed" data-toggle="collapse" aria-expanded="false">
                         <i class="fa-solid fa-hourglass-start"></i>
                            <span class="ml-4">Time</span>
@@ -99,25 +104,25 @@
                                 <i class="las la-minus"></i><span>List day</span>
                             </a>
                         </li>
-                        {{-- <li class="">
+                        <li class="">
                             <a href="/day/create">
                                 <i class="las la-minus"></i><span>Add day</span>
                             </a>
-                        </li> --}}
+                        </li>
                         <li class="">
                             <a href="/hour/index">
                                 <i class="las la-minus"></i><span>List hour</span>
                             </a>
                         </li>
-                        {{-- <li class="">
+                        <li class="">
                             <a href="/hour/create">
                                 <i class="las la-minus"></i><span>Add hour</span>
                             </a>
-                        </li> --}}
+                        </li>
                     </ul>
-                </li>
+                </li> --}}
                    {{-- dayHour --}}
-                   <li class=" ">
+                   {{-- <li class=" ">
                     <a href="#dayHour" class="collapsed" data-toggle="collapse" aria-expanded="false">
                         <i class="fa-solid fa-hourglass-start"></i>
                            <span class="ml-4">day Hour</span>
@@ -137,7 +142,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
        
                     {{-- seats --}}
                     <li class=" ">

@@ -19,12 +19,10 @@ class dateTimeController extends Controller
         $showtimes = $film->showtimes;
         return view('client.cart.dateTime',compact('film','showtimes'));
     }
-    public function handleDateRequest(Request $request, $film_id)
+    public function room(Request $request, $id)
     {
-        $data = [
-        'selectedDate' => $request->selectedDate,
-        'selectedHour' => $request->selectedHour,
-       ];
-        dd($data);
+        $film = film::findOrFail($id);
+        $showtimes = $film->showtimes;
+       return view('client.cart.Room',compact('film','showtimes'));
     }
 }

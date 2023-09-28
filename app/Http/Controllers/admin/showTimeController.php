@@ -60,7 +60,11 @@ class showTimeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $showTime = showtimes::findOrFail($id);
+        $film = film::get();
+        $room = room::get();
+        $hour = hour::get();
+        return view('admin.showTime.edit',compact('showTime','film','hour','room'));
     }
 
     /**
@@ -68,7 +72,16 @@ class showTimeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $showTime = showtimes::findOrFail($id);
+        $dataUpdate = [
+            'film_id' => $request->film_id,
+            'room_id' => $request->room_id,
+            'hour_id' => $request->hour_id,
+            'day' => $request->day,
+            'content' => $request->content,
+        ];
+        $showTime->update($dataUpdate);
+        return redirect('/showTime/index');
     }
 
     /**
@@ -76,6 +89,8 @@ class showTimeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $showTime = showtimes::findOrFail($id);
+        $showTime->delete($id);
+        return redirect('/showTime/index');
     }
 }
