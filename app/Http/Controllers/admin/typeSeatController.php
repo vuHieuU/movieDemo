@@ -3,19 +3,18 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\seat;
-use App\Models\TypeSeat;
 use Illuminate\Http\Request;
+use App\Models\TypeSeat;
 
-class seatController extends Controller
+class typeSeatController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $seat = seat::get();
-        return view('admin.seat.index',compact('seat'));
+        $type = TypeSeat::get();
+        return view('admin.typeSeat.index',compact('type'));
     }
 
     /**
@@ -23,8 +22,7 @@ class seatController extends Controller
      */
     public function create()
     {
-        $type = TypeSeat::with('typeSeats')->get();
-        return view('admin.seat.create',compact('type'));
+        return view('admin.typeSeat.create');
     }
 
     /**
@@ -33,11 +31,11 @@ class seatController extends Controller
     public function store(Request $request)
     {
         $data = [
-            'seat_number' => $request->seat_number,
-            'typeSeat_id' => $request->typeSeat_id,
+            'name' => $request->name,
+            'price' => $request->price,
         ];
-        seat::create($data);
-         return redirect('/seat/index');
+        TypeSeat::create($data);
+        return redirect('/typeSeat/index');
     }
 
     /**
@@ -53,9 +51,8 @@ class seatController extends Controller
      */
     public function edit(string $id)
     {
-        $seat = seat::findOrFail($id);
-        $type = TypeSeat::get();
-        return view('admin.seat.edit',compact('seat','type'));
+        $type = TypeSeat::findOrFail($id);
+        return view('admin.typeSeat.edit',compact('type'));
     }
 
     /**
@@ -63,13 +60,13 @@ class seatController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $seat = seat::findOrFail($id);
-        $dataUpdate = [
-            'seat_number' => $request->seat_number,
-            'typeSeat_id' => $request->typeSeat_id,
+        $type = TypeSeat::findOrFail($id);
+        $data = [
+            'name' => $request->name,
+            'price' => $request->price,
         ];
-        $seat->update($dataUpdate);
-         return redirect('/seat/index');
+        $type->update($data);
+        return redirect('/typeSeat/index');
     }
 
     /**
@@ -77,8 +74,8 @@ class seatController extends Controller
      */
     public function destroy(string $id)
     {
-        $seat = seat::findOrFail($id);
-        $seat->delete($id);
-        return redirect('/seat/index');
+        $type = TypeSeat::findOrFail($id);
+        $type->delete($id);
+        return redirect('/typeSeat/index');
     }
 }

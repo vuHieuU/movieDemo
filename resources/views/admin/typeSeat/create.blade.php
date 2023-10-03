@@ -1,6 +1,6 @@
 @extends('admin.layout.home')
 @section('content')
-<form action="/seat/update/{{ $seat->id }}" method="POST" data-toggle="validator" enctype="multipart/form-data">
+<form action="/typeSeat/store" method="POST" data-toggle="validator" enctype="multipart/form-data">
     @csrf
     <div class="wrapper">
         <div class="modal fade" id="new-order" tabindex="-1" role="dialog" aria-hidden="true">
@@ -33,29 +33,26 @@
                         <div class="card">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="header-title">
-                                    <h4 class="card-title">Add Seat</h4>
+                                    <h4 class="card-title">Add type seat</h4>
                                 </div>
                             </div>
                             <div class="card-body">
                                   <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Seat number</label>
+                                            <label>Name *</label>
                                             <input type="text" class="form-control"
-                                                name="seat_number" value="{{ $seat->seat_number }}">
+                                                name="name">
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
                                   </div> 
                                   <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>type Seat</label>
-                                              <select class="form-control" name="typeSeat_id" aria-label="Default select example">
-                                                @foreach ($type as $item)
-                                                      <option value="{{ $item->id }}" {{ $seat->typeSeat_id == $item->id ? 'selected':'' }}>{{ $item->name }}</option>
-                                                @endforeach
-                                              </select>
+                                            <label>Price *</label>
+                                            <input type="text" class="form-control"
+                                                name="price">
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>

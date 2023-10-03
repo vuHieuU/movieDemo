@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\film;
+use App\Models\hour;
 use App\Models\room;
+use App\Models\seat;
 use App\Models\showtimes;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\hour;
 
 class showTimeController extends Controller
 {
@@ -28,7 +29,8 @@ class showTimeController extends Controller
         $film = film::get();
         $room = room::get();
         $hour = hour::get();
-        return view('admin.showTime.create',compact('film','room','hour'));
+        $seats = seat::get();
+        return view('admin.showTime.create',compact('film','room','hour','seats'));
     }
 
     /**
@@ -43,7 +45,8 @@ class showTimeController extends Controller
             'day' => $request->day,
             'content' => $request->content,
         ];
-        showtimes::create($data);
+        $showtime = showtimes::create($data);
+        $showtime->seats()->attach($request->id_seat);
         return redirect('/showTime/index');
     }
 

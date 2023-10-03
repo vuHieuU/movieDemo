@@ -15,7 +15,8 @@
                 @php $uniqueDates = []; @endphp
                 @foreach ($showtimes as $showtime)
                     @if (!in_array($showtime->day, $uniqueDates))
-                        <h2 class="ms-5 mt-3 showtime-day date-button" data-showtime-date="{{ $showtime->day }}">{{ $showtime->day }}</h2>
+                        <h2 class="ms-5 mt-3 showtime-day date-button" 
+                        data-showtime-date="{{ $showtime->day }}">{{ $showtime->day }}</h2>
                         @php $uniqueDates[] = $showtime->day; @endphp
                     @endif
                 @endforeach
@@ -42,11 +43,14 @@
                         @endif
                 
                     @if (!in_array($showtimeTime, $uniqueTimesByDate[$showtimeDate]))
-                        <button class="btn btn-warning px-5 py-3 fw-medium fs-5 custom-bg-red hour-button"
-                            data-showtime-date="{{ $showtimeDate }}" style="margin-right: 20px; margin-top:10px; display: none;"
-                            onclick="selectHour('{{ $showtimeTime }}')">
-                            {{ $showtimeTime }}
-                        </button>
+                    <button class="btn btn-warning px-5 py-3 fw-medium fs-5 custom-bg-red hour-button"
+                        data-showtime-date="{{ $showtimeDate }}"
+                        data-showtime-id="{{ $item->id }}"
+                        style="margin-right: 20px; margin-top:10px; display: none;"
+                        onclick="selectHour('{{ $showtimeTime }}')">
+                    {{ $showtimeTime }}
+                   </button>
+                
                         @php $uniqueTimesByDate[$showtimeDate][] = $showtimeTime; @endphp
                     @endif
                 @endforeach
@@ -57,10 +61,12 @@
     <div class="btn btn-light my-5 w-100 py-5">
         <h3 class="fw-semibold" id="selectedHourText">Giờ </h3>
     </div>
-    <form method="GET" action="{{route('room',['film_id'=> $film->id]) }}">
+    <form method="GET" action="{{route('seat',['film_id'=> $film->id]) }}">
         @csrf
         <input type="hidden" name="selectedDate" id="selectedDate" value="">
         <input type="hidden" name="selectedHour" id="selectedHour" value="">
+        <input type="hidden" name="selectedShowtimeId" id="selectedShowtimeId" value="">
+
 
         <div class="text-center mt-5" style="margin-bottom: 70px">
             <button type="submit" class="btn btn-danger px-5 py-2 fs-4">
@@ -102,17 +108,26 @@
 
     // Hàm được gọi khi người dùng chọn giờ
     function selectHour(hour) {
-        var selectedHourElement = document.getElementById("selectedHour");
-        var selectedHourElementText = document.getElementById("selectedHourText");
-        selectedHourElementText.textContent = "Đã chọn giờ: " + hour;
-        selectedHourElement.value = hour; // Cập nhật giá trị input selectedHour
+    var selectedHourElement = document.getElementById("selectedHour");
+    var selectedHourElementText = document.getElementById("selectedHourText");
+    selectedHourElementText.textContent = "Đã chọn giờ: " + hour;
+    selectedHourElement.value = hour; // Cập nhật giá trị input selectedHour
 
-        var hourButtons = document.querySelectorAll(".hour-button");
-        hourButtons.forEach(function (button) {
-            button.classList.remove("selected-hour");
-        });
-        event.currentTarget.classList.add("selected-hour");
+    var hourButtons = document.querySelectorAll(".hour-button");
+    hourButtons.forEach(function (button) {
+        button.classList.remove("selected-hour");
+    });
+    
+    // Lấy id showtime từ thuộc tính data-showtime-id của nút giờ xem được chọn
+    var selectedShowtimeId = event.currentTarget.getAttribute("data-showtime-id");
+    
+    // Ví dụ sử dụng biến selectedShowtimeId để lưu id showtime
+    var selectedShowtimeIdElement = document.getElementById("selectedShowtimeId");
+    selectedShowtimeIdElement.value = selectedShowtimeId;
+
+    event.currentTarget.classList.add("selected-hour");
 }
+
 
     // Sự kiện click trên mỗi ngày để xác định ngày được chọn và hiển thị giờ xem tương ứng
     var showtimeDayElements = document.querySelectorAll(".showtime-day");
@@ -120,7 +135,6 @@
         element.addEventListener("click", function () {
             var selectedDay = element.getAttribute("data-showtime-date");
             selectDate(selectedDay);
-
             // Hiển thị giờ xem tương ứng với ngày được chọn và ẩn giờ xem của các ngày khác
             var hourButtons = document.querySelectorAll(".hour-button");
             hourButtons.forEach(function (button) {

@@ -6,17 +6,21 @@
         <h2 class="ms-3 fw-bold">1. Chọn Phòng</h2>
         <hr>
     </div>
-
-       <div>
-          @foreach ($showtimes as $item)
-                    <h3 id="roomName">{{ $item->rooms->name }}</h3>
-          @endforeach
-       </div>
-
-    <form method="get">
+    <div class="mt-5">
+        <div class="row g-3">
+            @foreach($showtimes as $item)
+            <div class="col room-item" data-room-id="{{ $item->rooms->id }}" data-name-id="{{ $item->rooms->name }}">
+                <h3>{{ $item->rooms->name }}</h3>
+                <h3>Số Lượng: {{ $item->rooms->max }}</h3>
+            </div>
+        @endforeach
+        </div>
+    </div>
+        
+    <form method="get" action="{{route('seat',['film_id'=> $film->id]) }}">
         @csrf
-        <input type="hidden" name="selectedDate" id="selectedDate" value="">
-        <input type="hidden" name="selectedHour" id="selectedHour" value="">
+        <input type="hidden" name="selectedRoomID" id="selectedRoomID" value="">
+        <input type="hidden" name="selectedRoomName" id="selectedRoomName" value="">
 
         <div class="text-center mt-5" style="margin-bottom: 70px">
             <button type="submit" class="btn btn-danger px-5 py-2 fs-4">
@@ -27,35 +31,47 @@
         </div>
     </form>
 </div>
+
+<!-- Import thư viện Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Lắng nghe sự kiện thay đổi ngày giờ và cập nhật tên phòng
-            document.getElementById("selectedDate").addEventListener("change", updateRoomName);
-            document.getElementById("selectedHour").addEventListener("change", updateRoomName);
-    
-            // Hàm cập nhật tên phòng
-            function updateRoomName() {
-                // Lấy giá trị ngày và giờ từ các input
-                var selectedDate = document.getElementById("selectedDate").value;
-                var selectedHour = document.getElementById("selectedHour").value;
-    
-                // Gửi yêu cầu Ajax (hoặc fetch) đến máy chủ để lấy tên phòng dựa trên ngày và giờ
-                // Sau khi nhận được dữ liệu từ máy chủ, cập nhật nội dung của phần tử #roomName
-                // Ví dụ sử dụng fetch:
-                fetch(`/get-room-name?date=${selectedDate}&hour=${selectedHour}`)
-                    .then(function (response) {
-                        return response.json();
-                    })
-                    .then(function (data) {
-                        document.getElementById("roomName").innerText = data.roomName;
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            }
+
+<style>
+    /* Định dạng cho phòng đã chọn */
+    .selected-room {
+        background-color: rgb(245, 237, 237);
+        color: black;
+        font-weight: bold;
+    }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const roomElements = document.querySelectorAll(".room-item");
+    const selectedRoomInputID = document.getElementById("selectedRoomID");
+    const selectedRoomInputName = document.getElementById("selectedRoomName");
+
+    roomElements.forEach(function (roomElement) {
+        roomElement.addEventListener("click", function () {
+            // Loại bỏ lớp "selected-room" từ tất cả các phòng trước
+            roomElements.forEach(function (element) {
+                element.classList.remove("selected-room");
+            });
+
+            // Thêm lớp "selected-room" cho phòng đã chọn
+            roomElement.classList.add("selected-room");
+
+            // Lấy ID phòng được lưu trữ trong thuộc tính "data-room-id"
+            const selectedRoomId = roomElement.getAttribute("data-room-id");
+            const selectedRoomName = roomElement.getAttribute("data-name-id");
+
+            // Lấy Name phòng được lưu trữ trong thuộc tính "data-name-id"
+
+            // Cập nhật giá trị input ẩn
+            selectedRoomInputID.value = selectedRoomId;
+            selectedRoomInputName.value = selectedRoomName;
         });
-    </script>
-    
+    });
+});
+</script>
 @endsection

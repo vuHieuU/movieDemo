@@ -86,7 +86,7 @@
                                             @foreach ($seats as $item)
                                             <div class="form-check mx-3 d-flex align-items-center">
                                                 <input class="checkbox form-check-input" name="id_seat[]" type="checkbox"
-                                                {{ $room->seats->contains('name',$item->name) ? 'checked':'' }} value="{{ $item->id }}">
+                                                {{ $room->seats->contains('seat_number',$item->seat_number) ? 'checked':'' }} value="{{ $item->id }}">
                                                 <label class="form-check-label mx-1">
                                                   {{ $item->seat_number }}
                                                 </label>

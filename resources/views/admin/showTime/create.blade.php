@@ -98,6 +98,23 @@
                                         </div>
                                     </div>
                                   </div> 
+                                  <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Seats</label>
+                                        <input type="checkbox" class="checkbox mx-3" id="checkbox1" data-master-checkbox>
+                                        <div class="row container m-auto">
+                    
+                                            @foreach ($seats as $item)
+                                            <div class="form-check mx-3 d-flex align-items-center">
+                                                <input class="checkbox form-check-input" name="id_seat[]" type="checkbox" value="{{ $item->id }}">
+                                                <label class="form-check-label mx-1">
+                                                  {{ $item->seat_number }}
+                                                </label>
+                                              </div>
+                                          @endforeach
+                                        </div>
+                                    </div>
+                                </div>
 
                                     <button type="submit" class="btn btn-primary mr-2">Save</button>
                                     <button type="reset" class="btn btn-danger mr-2">Reset</button>

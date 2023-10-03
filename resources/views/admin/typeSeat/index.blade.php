@@ -12,7 +12,7 @@
                             <h4 class="mb-3">New Order</h4>
                             <div class="content create-workform bg-body">
                                 <div class="pb-3">
-                                    <label class="mb-2">Seat</label>
+                                    <label class="mb-2">Email</label>
                                     <input type="text" class="form-control" placeholder="Enter Name or Email">
                                 </div>
                                 <div class="col-lg-12 mt-4">
@@ -32,10 +32,10 @@
               <div class="col-lg-12">
                   <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
                       <div>
-                          <h4 class="mb-3">Seats List</h4>
+                          <h4 class="mb-3">type Seat List</h4>
                           <p class="mb-0">The product list effectively dictates product presentation and provides space<br> to list your products and offering in the most appealing way.</p>
                       </div>
-                      <a href="/seat/create" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add Seat</a>
+                      <a href="/typeSeat/create" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add Type Seat</a>
                   </div>
               </div>
               <div class="col-lg-12">
@@ -49,15 +49,18 @@
                                       <label for="checkbox1" class="mb-0"></label>
                                   </div>
                               </th>
-                              <th>Seat</th>
-                              <th>type seat</th>
+                              <th>Name</th>
                               <th>Price</th>
+                            
                               <th>Action</th>
                           </tr>
                       </thead>
                       <tbody class="ligth-body">
 
-                        @foreach ($seat as $item)
+                        @foreach ($type as $item)
+                            
+                    
+              
                           <tr>
                               <td>
                                   <div class="checkbox d-inline-block">
@@ -65,30 +68,17 @@
                                       <label for="checkbox10" class="mb-0"></label>
                                   </div>
                               </td>
-                              <td>{{ $item->seat_number }}</td>
-                              <td>
-                                @if ($item->typeSeats)
-                                    {{ $item->typeSeats->name }}
-                                @else
-                                    No type specified
-                                @endif
-                            </td>
-                              <td>
-                                @if ($item->typeSeats)
-                                    {{ $item->typeSeats->price }}
-                                @else
-                                    No type specified
-                                @endif
-                            </td>
+                              <td>{{ $item->name }}</td>
+                              <td>{{ $item->price }}</td>
                             
                               <td>
                                   <div class="d-flex align-items-center list-action">
                                       <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
                                           href="#"><i class="ri-eye-line mr-0"></i></a>
                                       <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                          href="/seat/edit/{{ $item->id }}"><i class="ri-pencil-line mr-0"></i></a>
+                                          href="/typeSeat/edit/{{ $item->id }}"><i class="ri-pencil-line mr-0"></i></a>
                                       <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                          href="/seat/delete/{{ $item->id }}"><i class="ri-delete-bin-line mr-0"></i></a>
+                                          href="/typeSeat/delete/{{ $item->id }}"><i class="ri-delete-bin-line mr-0"></i></a>
                                   </div>
                               </td>
                           </tr>

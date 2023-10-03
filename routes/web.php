@@ -105,6 +105,15 @@ Route::get('/admin/home', [App\Http\Controllers\admin\HomeController::class, 'in
         Route::post('update/{id}', [App\Http\Controllers\admin\roomController ::class, 'update']);
         Route::get('delete/{id}', [App\Http\Controllers\admin\roomController ::class, 'destroy']);
     });
+    // typeSeat
+    Route::prefix('typeSeat')->group(function(){
+        Route::get('index', [App\Http\Controllers\admin\typeSeatController::class, 'index']);
+        Route::get('create', [App\Http\Controllers\admin\typeSeatController ::class, 'create']);
+        Route::post('store', [App\Http\Controllers\admin\typeSeatController ::class, 'store']);
+        Route::get('edit/{id}', [App\Http\Controllers\admin\typeSeatController ::class, 'edit']);
+        Route::post('update/{id}', [App\Http\Controllers\admin\typeSeatController ::class, 'update']);
+        Route::get('delete/{id}', [App\Http\Controllers\admin\typeSeatController ::class, 'destroy']);
+    });
     // seat
     Route::prefix('seat')->group(function(){
         Route::get('index', [App\Http\Controllers\admin\seatController::class, 'index']);
@@ -135,5 +144,8 @@ Route::get('/admin/home', [App\Http\Controllers\admin\HomeController::class, 'in
 
         // cart
         Route::get('ticketDateTime/{film_id}',[dateTimeController::class,'index'])->name('date');
-        Route::get('room/{film_id}',[dateTimeController::class,'room'])->name('room');
+        // Route::get('room/{film_id}',[dateTimeController::class,'room'])->name('room');
+        Route::get('seat/{film_id}',[dateTimeController::class,'seat'])->name('seat');
+        Route::get('pay/{film_id}',[dateTimeController::class,'pay'])->name('pay');
+        Route::post('pay/{film_id}',[dateTimeController::class,'handlePay'])->name('saveTicket');
 });

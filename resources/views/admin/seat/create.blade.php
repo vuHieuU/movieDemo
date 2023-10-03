@@ -47,6 +47,19 @@
                                         </div>
                                     </div>
                                   </div> 
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>type Seat</label>
+                                              <select class="form-control" name="typeSeat_id" aria-label="Default select example">
+                                                @foreach ($type as $item)
+                                                      <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endforeach
+                                              </select>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                  </div> 
                                     <button type="submit" class="btn btn-primary mr-2">Save</button>
                                     <button type="reset" class="btn btn-danger mr-2">Reset</button>
                                     {{-- <a href="/user/index"><button type="submit" class="btn btn-danger">Back</button></a> --}}

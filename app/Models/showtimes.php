@@ -27,4 +27,8 @@ class showtimes extends Model
     {
         return $this->belongsTo(hour::class, 'hour_id');
     }
+    public function seats()
+    {
+        return $this->belongsToMany(Seat::class,'showtime_seats', 'showtime_id', 'seat_id');
+    }
 }

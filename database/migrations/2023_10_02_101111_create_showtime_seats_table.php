@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('room_seats', function (Blueprint $table) {
+        Schema::create('showtime_seats', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('room_id');
+            $table->unsignedBigInteger('showtime_id');
             $table->unsignedBigInteger('seat_id');
             $table->string('isActive')->default(1);
             $table->timestamps();
     
-            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
+            $table->foreign('showtime_id')->references('id')->on('showtimes')->onDelete('cascade');
             $table->foreign('seat_id')->references('id')->on('seats')->onDelete('cascade');
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('room_seats');
+        Schema::dropIfExists('showtime_seats');
     }
 };
